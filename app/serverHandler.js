@@ -1,5 +1,5 @@
 const sendPushBtn       = document.querySelector('#sendPushBtn');
-const requiredContainer = document.querySelector('#requiredMsg')
+const requiredContainer = document.querySelector('#requiredMsg');
 
 sendPushBtn.addEventListener('click', function () {
     var susbcribers = [];

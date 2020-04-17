@@ -88,15 +88,12 @@ function unsubscribeUser() {
     swRegistration.pushManager.getSubscription()
         .then(function (subscription) {
             updateSubscriptionOnServer(subscription, 'DELETE');
+            return subscription.unsubscribe();
         })
         .catch(function (error) {
             console.log('Error unsubscribing', error);
         })
-        .then(function (subscription) {
-            if (subscription) {
-                return subscription.unsubscribe();
-            }
-
+        .then(function () {
             subscriptionDetails.classList.add('is-invisible');
 
             console.log('User is unsubscribed.');
