@@ -3,7 +3,7 @@
 */
 
 // PublicKey: VAPID
-const applicationServerPublicKey = 'BHIDWRIKYxtfAcvg97EdwgqmufNqqFJ4AP8MMxU3OjcpSACUsXOSlG-DLSBVbBCIR1KjS8WCKPkaZ1ecL3M733w';
+const applicationServerPublicKey = 'YOUR_PUBLIC_VAPID_KEY';
 
 // Push enable/disable button
 const pushButton            = document.querySelector('#push-subscription-btn');
