@@ -19,9 +19,10 @@ switch ($method) {
         $contentEncoding    = $subscription['contentEncoding'];
 
         $sql                = "SELECT * FROM subscriptions WHERE endpoint = '$endPoint'";
-        $subscriptionExists = $conn->query($sql);
+        $query = $conn->query($sql);
+        $subscriptionExists = $query->fetch_array();
 
-        if($subscriptionExists){
+        if(count($subscriptionExists)){
             return false;
         }
 
