@@ -18,6 +18,13 @@ switch ($method) {
         $authToken          = $subscription['authToken'];
         $contentEncoding    = $subscription['contentEncoding'];
 
+        $sql                = "SELECT * FROM subscriptions WHERE endpoint = '$endPoint'";
+        $subscriptionExists = $conn->query($sql);
+
+        if($subscriptionExists){
+            return false;
+        }
+
         $sql = "INSERT INTO subscriptions (browserName, endpoint, publicKey, authToken, contentEncoding) VALUES ('$browserName', '$endPoint', '$publicKey', '$authToken', '$contentEncoding');";
 
         break;
