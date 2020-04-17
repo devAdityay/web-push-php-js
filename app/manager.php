@@ -40,6 +40,12 @@ while ($row = $query->fetch_assoc()){
 </div>
 
 <div class="container subscription-details js-subscription-details">
+    <div class="alert alert-primary is-invisible" role="alert" id="processingAlert">
+        Please wait...Processing your request
+    </div>
+    <div class="alert alert-success is-invisible" role="alert" id="successAlert">
+        Sent successfully!
+    </div>
     <p class="text-danger" id="requiredMsg"></p>
     <div class="form-group">
         <label for="susbcriberName">Subscriber</label>
