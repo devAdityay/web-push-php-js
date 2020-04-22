@@ -3,11 +3,12 @@
 */
 
 // PublicKey: VAPID
-const applicationServerPublicKey = 'YOUR_PUBLIC_VAPID_KEY';
+const applicationServerPublicKey = serverPvtKey;
 
 // Push enable/disable button
-const pushButton            = document.querySelector('#push-subscription-btn');
-const subscriptionDetails   = document.querySelector('.js-subscription-details');
+const pushButton                = document.querySelector('#push-subscription-btn');
+const subscriptionDetails       = document.querySelector('.js-subscription-details');
+const notificationContainer     = document.querySelector('#notificationsContainer');
 
 let isSubscribed    = false;
 let swRegistration  = null;
@@ -45,6 +46,9 @@ function updateBtn() {
 }
 
 function updateSubscriptionOnServer(subscription,method) {
+    if(!subscription) {
+        return ;
+    }
     const key                   = subscription.getKey('p256dh');
     const token                 = subscription.getKey('auth');
     const endpoint              = subscription.endpoint;
@@ -103,6 +107,39 @@ function unsubscribeUser() {
         });
 }
 
+function showNotifications(notifications) {
+
+    if(notificationContainer.classList.contains('is-invisible')){
+        var notificationBody = document.getElementById('notifications-body');
+        notificationBody.innerHTML = '';
+
+        notifications.reverse();
+
+        notifications.forEach(function (notification) {
+            var row = document.createElement('tr');
+            var notificationCell = document.createElement("td");
+            var msgText = document.createTextNode(notification.msgTxt);
+
+            var dateTimeCell = document.createElement("td");
+            var dateTime = document.createTextNode(notification.datetime);
+
+            dateTimeCell.setAttribute('align', 'right');
+
+            notificationCell.appendChild(msgText);
+            dateTimeCell.appendChild(dateTime);
+
+            row.appendChild(notificationCell);
+            row.appendChild(dateTimeCell);
+
+            notificationBody.appendChild(row);
+        });
+
+        notificationContainer.classList.remove('is-invisible');
+    }else{
+        notificationContainer.classList.add('is-invisible');
+    }
+}
+
 function initializeUI() {
     pushButton.addEventListener('click', function () {
         pushButton.disabled = true;
@@ -129,6 +166,7 @@ function initializeUI() {
 
             updateBtn();
         });
+
 }
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
