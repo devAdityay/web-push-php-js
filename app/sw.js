@@ -48,12 +48,12 @@ function initDbEngine() {
 
     request.onsuccess = function(){
         return true;
-    }
+    };
 
     request.onupgradeneeded = function (event) {
         var db = event.target.result;
         var objectStore = db.createObjectStore(notificationStore, {keyPath: "id", autoIncrement: true});
-    }
+    };
 }
 
 function storePushInIndexedDB(notificationData){

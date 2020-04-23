@@ -17,6 +17,11 @@ function getAllNotifications () {
         };
     };
 
+    engine.onupgradeneeded = function (event) {
+        var db = event.target.result;
+        var objectStore = db.createObjectStore(notificationStore, {keyPath: "id", autoIncrement: true});
+    };
+
     engine.onerror = function (error) {
         error('[IndexedDB] An error occured ', error);
     };
