@@ -49,6 +49,7 @@ function updateSubscriptionOnServer(subscription,method) {
     if(!subscription) {
         return ;
     }
+    
     const key                   = subscription.getKey('p256dh');
     const token                 = subscription.getKey('auth');
     const endpoint              = subscription.endpoint;
