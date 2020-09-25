@@ -4,7 +4,7 @@ const processingAlert       = document.querySelector('#processingAlert');
 const successAlert          = document.querySelector('#successAlert');
 
 sendPushBtn.addEventListener('click', function () {
-    var susbcribers = [];
+    var susbcribers         = [];
     sendPushBtn.disabled    = true;
     processingAlert.classList.remove('is-invisible');
 
